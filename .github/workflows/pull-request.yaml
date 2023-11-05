@@ -1,0 +1,25 @@
+name: Pull-Request-CI
+
+on: 
+    pull_request:
+        branches:
+            - main
+
+
+jobs:
+    Scan-With-SonarCloud:
+        name: Scan with SonarCloud
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+              with:
+                fetch_depth: 0
+
+            - name: SonarCloud Scan
+              uses: SonarSource/sonarcloud-github-action@master
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+                SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
+            
