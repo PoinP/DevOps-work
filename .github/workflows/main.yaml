@@ -20,6 +20,33 @@ jobs:
                 name: code
                 path: .
 
+    Use-Flake8:
+      runs-on: ubuntu-latest
+
+      needs: Clone-Repo
+
+      steps:
+        - name: Setup Python
+          uses: actions/setup-python@v1
+          with:
+            python-version: 3.7.4
+            architecture: x64
+
+        - name: Download Code
+          uses: actions/download-artifact@v3
+          with:
+            name: code
+            path: .
+
+        - name: Install flake8
+          run: pip install flake8
+        - name: Run flake8
+          uses: suo/flake8-github-action@releases/v1
+          with:
+            checkName: 'Use-Flake8'
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     Run-Python-Tests:
         name: Run Python Tests
         runs-on: ubuntu-latest
@@ -27,7 +54,6 @@ jobs:
         needs: Clone-Repo
 
         steps:
-
           - name: Download Code
             uses: actions/download-artifact@v3
             with:
@@ -37,7 +63,7 @@ jobs:
           - name: Install dependencies
             run: |
               cd src/
-              python -m pip install --upgrade pip
+              python3 -m pip install --upgrade pip
               pip install -r requirements.txt
 
           - name: Run Tests
