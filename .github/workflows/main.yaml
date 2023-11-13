@@ -28,7 +28,7 @@ jobs:
 
         steps:
             - name: Download Code
-              uses: actions/download-artifcat@v3
+              uses: actions/download-artifact@v3
               with:
                 name: code
                 path: .
