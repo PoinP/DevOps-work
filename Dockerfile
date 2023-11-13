@@ -1,5 +1,5 @@
 FROM python:3-alpine
- 
+
 WORKDIR /app
 COPY /src/app.py /app
 COPY /src/requirements.txt /app
