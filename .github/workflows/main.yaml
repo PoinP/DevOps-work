@@ -41,10 +41,6 @@ jobs:
           run: pip install flake8
         - name: Run flake8
           uses: py-actions/flake8@v2
-          with:
-            checkName: 'Use-Flake8'
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     Run-Python-Tests:
         name: Run Python Tests
