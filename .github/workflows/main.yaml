@@ -34,7 +34,7 @@ jobs:
                 path: .
 
             - name: Run Tests
-              run: python3 -m unittest src/app_test.py
+              run: pip install -r src/requirements.txt && python3 -m unittest src/app_test.py
 
     Scan-With-SonarCloud:
         name: Scan with SonarCloud
