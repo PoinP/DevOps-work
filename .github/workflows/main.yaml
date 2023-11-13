@@ -27,7 +27,13 @@ jobs:
         needs: Clone-Repo
 
         steps:
-          - uses: actions/checkout@v3
+
+          - name: Download Code
+            uses: actions/download-artifact@v3
+            with:
+              name: code
+              path: .
+
           - name: Install dependencies
             run: |
               cd src/
@@ -35,7 +41,7 @@ jobs:
               pip install -r requirements.txt
 
           - name: Run Tests
-            run: python -m unittest test/test_hypedsearch.py
+            run: python -m unittest app_test.py
 
     Scan-With-SonarCloud:
         name: Scan with SonarCloud
