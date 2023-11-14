@@ -60,6 +60,7 @@ jobs:
               cd src/
               python3 -m pip install --upgrade pip
               pip install -r requirements.txt
+              pip install unittest
 
           - name: Run Tests
             run: python -m unittest app_test.py
